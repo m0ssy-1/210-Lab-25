@@ -1,5 +1,7 @@
+#include <ctime>
 #include <iostream>
 #include <fstream>
+#include <iterator>
 #include <vector>
 #include <list>
 #include <set>
@@ -73,7 +75,23 @@ int main() {
 print_result("Sorting", vec_time, list_time,set_time);
 
 //race 3, instering
-vec_time = 
+vec_time = time_operation([&]() {
+    vec_codes.insert(vec_codes.begin() + vec_codes.size() / 2, "TESTCODE");
+})
+
+list_time = time_operation([&]() {
+    auto it = list_codes.begin();
+    advance(it, list_codes() / 2);
+    list_codes.insert(it, "TESTCODE");
+});
+
+set_time = time_operation([&]() {
+    set_codes.insert("TESTCODE");
+});
+
+print_result("Inserting", vec_time,list_time, set_time);
+
+
 
     return 0;
 }

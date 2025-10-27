@@ -46,9 +46,34 @@ int main() {
     cout << left << setw() << "something"
          << right << setw() << "something"
          << setw() << "sometihn"
-         << setw() << "sometihng" 
+         << setw() << "sometihng";
+//race 1, reading
+    long long vec_time = time_operation([&]() {
+        vec_codes.assign(data.begin(), data.end());
+    });
+    long long list_time = time_operation([&]() {
+        vec_codes.assign(data.begin(), data.end());
+    });
+    long long set_time = time_operation([&]() {
+        vec_codes.assign(data.begin(), data.end());
+    });
 
+    print_result("Reading", vec_time, list_time, set_time);
+//race 2, sorting
+    vec_time = time_operation([&]() {
+        sort(vec_codes.begin(), vec_codes.end());
+    });
 
+    list_time = time_operation([&]() {
+        list_codes.sort();
+    });
+//set is always sorted
+    set_time = -1;
+
+print_result("Sorting", vec_time, list_time,set_time);
+
+//race 3, instering
+vec_time = 
 
     return 0;
 }
